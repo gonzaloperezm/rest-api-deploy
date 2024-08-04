@@ -1,6 +1,6 @@
-const z = require('zod')
+import z from 'zod'
 
-const movieSchema = z.object({
+export const movieSchema = z.object({
   title: z.string({
     invalid_type_error: 'Movie title must be a string',
     required_error: 'Movie title is required.'
@@ -21,15 +21,11 @@ const movieSchema = z.object({
   )
 })
 
-function validateMovie (input) {
+export function validateMovie (input) {
   return movieSchema.safeParse(input)
 }
 
-function validatePartialMovie (input) {
+export function validatePartialMovie (input) {
   return movieSchema.partial().safeParse(input)
 }
 
-module.exports = {
-  validateMovie,
-  validatePartialMovie
-}
